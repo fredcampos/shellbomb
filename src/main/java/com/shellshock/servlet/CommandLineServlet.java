@@ -12,9 +12,8 @@ public class CommandLineServlet extends ShellshockServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        System.out.println("AAAAAAAAAAAAAAAAARGH");
+        setLocalContext(request);
         String cmd = request.getParameter("cmd");
-        System.out.println("cmd");
         if (cmd != null){
             ProcessOutput output = CommandLine.instance().executeCommand(cmd);
             if (output != null){
@@ -27,22 +26,15 @@ public class CommandLineServlet extends ShellshockServlet {
                     errs.append(err).append("\n");
                 }
                 if (out.length() > 0){
-                    request.setAttribute("commandOutput", errs);
+                    request.setAttribute("commandOutput", out);
                 }
                 if (errs.length() > 0){
                     request.setAttribute("commandError", errs);
                 }
             }
         }
-        request.getRequestDispatcher(INDEX).forward(request, response);
-    }
 
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
-        System.out.println("FUCKOFFFFFFFf");
         request.getRequestDispatcher(INDEX).forward(request, response);
-
     }
 
 }

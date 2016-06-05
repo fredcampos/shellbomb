@@ -53,29 +53,28 @@ sourceSets {
 // dependencies to run on tomcat, are mandatory for tomcat plugin
 dependencies {
     providedCompile "javax.servlet:javax.servlet-api:3.0.1"
-    runtime 'javax.servlet:jstl:1.1.2'
+    compile 'javax.servlet:jstl:1.2'
 
-    def tomcatVersion = '7.0.57'
-    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
-    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
-        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
-    }
+//    def tomcatVersion = '7.0.57'
+//    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+//            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+//    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+//        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+//    }
 
 
-//    def tomcatVersion = '6.0.43'
-//    tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
-//            "org.apache.tomcat:coyote:${tomcatVersion}",
-//            "org.apache.tomcat:jasper:${tomcatVersion}"
+    def tomcatVersion = '6.0.43'
+    tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
+            "org.apache.tomcat:coyote:${tomcatVersion}",
+            "org.apache.tomcat:jasper:${tomcatVersion}"
 
 
 
 
 }
 
-// context where tomcat is deployed, by defautl localhost:8080/
-tomcatRun.contextPath = '/'
-tomcatRunWar.contextPath = '/'
+tomcatRun.contextPath = '/shellshock'
+tomcatRunWar.contextPath = '/shellshock'
 
 
 tomcat{
@@ -88,10 +87,9 @@ tomcat{
     }
 
 }
-//
-//tomcatRun{
-//    reloadable = true
-////    webAppSourceDirectory = file('WebContent')
-//
-//
-//}
+
+tomcatRun{
+    reloadable = true
+
+
+}

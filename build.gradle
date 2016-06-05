@@ -1,0 +1,97 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.0'
+
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+//apply plugin: 'idea'
+//apply plugin: 'eclipse'
+
+// project version
+version = '1.0'
+// JDK version source compatibility
+sourceCompatibility = 1.5
+// War file name
+war.baseName = 'shellshock'
+// Web directory, this overrides the default value "webapp"
+project.webAppDirName = 'WebContent'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+        test.compileClasspath += configurations.provided
+        test.runtimeClasspath += configurations.provided
+    }
+}
+
+// Set source directory
+sourceSets {
+        main {
+            java {
+                srcDir 'src/main/java'
+            }
+        }
+    }
+
+// dependencies to run on tomcat, are mandatory for tomcat plugin
+dependencies {
+    providedCompile "javax.servlet:javax.servlet-api:3.0.1"
+    runtime 'javax.servlet:jstl:1.1.2'
+
+    def tomcatVersion = '7.0.57'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+    }
+
+
+//    def tomcatVersion = '6.0.43'
+//    tomcat "org.apache.tomcat:catalina:${tomcatVersion}",
+//            "org.apache.tomcat:coyote:${tomcatVersion}",
+//            "org.apache.tomcat:jasper:${tomcatVersion}"
+
+
+
+
+}
+
+// context where tomcat is deployed, by defautl localhost:8080/
+tomcatRun.contextPath = '/'
+tomcatRunWar.contextPath = '/'
+
+
+tomcat{
+    users {
+        user {
+            username = 'admin'
+            password = 'admin'
+            roles = ['developers', 'admin', 'manager']
+        }
+    }
+
+}
+//
+//tomcatRun{
+//    reloadable = true
+////    webAppSourceDirectory = file('WebContent')
+//
+//
+//}

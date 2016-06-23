@@ -28,43 +28,74 @@
 <div class="container">
 
     <div class="starter-template">
-        <form action="${context}/command" enctype="application/x-www-form-urlencoded" name="uploadForm" method="POST">
-            <h3>Execute command</h3>
-            Enter command to execute <br/>
-            <input type="text" name="cmd" required />
-            <input type="submit" />
-        </form>
-        ${context}
+        <section>
+            <form action="${context}/command" enctype="application/x-www-form-urlencoded" name="uploadForm" method="POST">
+                <h3>Execute command</h3>
+                Enter command to execute <br/>
+                <input type="text" name="cmd" required />
+                <input type="submit" />
+            </form>
+            ${context}
+        </section>
+        <section>
+            <form action="${context}/upload" enctype="multipart/form-data" name="uploadForm" method="POST">
+                <h3>Upload file</h3>
+                Select file to upload <br/>
+                <input type="file" name="file" required />
+                <br/>
+                Path to upload file <br/>
+                <input name="filePath" type="text" required />
+                <br/>
+                <input type="submit" />
+            </form>
+        </section>
+        <section>
+            <c:if test="${not empty commandOutput}">
+                <h3>Last command output </h3>
+                <pre>
+                        ${commandOutput}
+                </pre>
+            </c:if>
 
-        <form action="/upload" enctype="multipart/form-data" name="uploadForm" method="POST">
-            <h3>Upload file</h3>
-            Select file to upload <br/>
-            <input type="file" name="file" required />
-            <br/>
-            Path to upload file <br/>
-            <input name="filePath" type="text" required />
-            <br/>
-            <input type="submit" />
-        </form>
+            <c:if test="${not empty commandError}">
+                <h3>Last command error </h3>
+                <pre>
+                        ${commandError}
+                </pre>
+            </c:if>
+        </section>
 
-        <c:if test="${not empty commandOutput}">
-            <h3>Last command output </h3>
-            <pre>
-                    ${commandOutput}
-            </pre>
+        <c:if test="${not empty ls}">
+            <div>
+                <h3>Current dir: ${currentDir}</h3>
+                <table class="table">
+                <c:forEach items="${ls}" var="file">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <c:choose>
+                                <c:when test="${file.type == 'directory'}">
+                                    <a href="?path=${file.fullPath}">${file.name}</a>
+                                </c:when>
+
+                                <c:otherwise>
+                                    ${file.name}
+                                </c:otherwise>
+                            </c:choose>
+
+                        </td>
+                        <td> ${file.type}</td>
+                        <td> ${file.size}</td>
+
+                    </tr>
+                    </tbody>
+                </c:forEach>
+                </table>
+            </div>
         </c:if>
-
-        <c:if test="${not empty commandError}">
-            <h3>Last command error </h3>
-            <pre>
-                    ${commandError}
-            </pre>
-        </c:if>
-
-
     </div>
 
-</div><!-- /.container -->
+</div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.shellshock;
+package com.shellbomb;
 
 
 import org.apache.commons.io.FileUtils;

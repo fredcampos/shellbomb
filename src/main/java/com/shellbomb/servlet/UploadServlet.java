@@ -1,4 +1,4 @@
-package com.shellshock.servlet;
+package com.shellbomb.servlet;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
 
-public class UploadServlet extends ShellshockServlet {
+public class UploadServlet extends ShellbombServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         try {

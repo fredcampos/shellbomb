@@ -1,4 +1,4 @@
-package com.shellshock.servlet;
+package com.shellbomb.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;

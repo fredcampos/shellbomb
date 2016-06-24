@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID"
          version="3.0">
-    <display-name>Shellshock</display-name>
+    <display-name>Shellbomb</display-name>
 
 
     <servlet-mapping>
@@ -14,7 +14,7 @@
 
     <servlet>
         <servlet-name>upload</servlet-name>
-        <servlet-class>com.shellshock.servlet.UploadServlet</servlet-class>
+        <servlet-class>com.shellbomb.servlet.UploadServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>upload</servlet-name>
@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>command</servlet-name>
-        <servlet-class>com.shellshock.servlet.CommandLineServlet</servlet-class>
+        <servlet-class>com.shellbomb.servlet.CommandLineServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>command</servlet-name>
@@ -33,18 +33,18 @@
 
 
     <servlet>
-        <servlet-name>shellshock</servlet-name>
-        <servlet-class>com.shellshock.servlet.ShellshockServlet</servlet-class>
+        <servlet-name>shellbomb</servlet-name>
+        <servlet-class>com.shellbomb.servlet.ShellbombServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>shellshock</servlet-name>
+        <servlet-name>shellbomb</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 
     <servlet>
         <servlet-name>download</servlet-name>
-        <servlet-class>com.shellshock.servlet.DownloadServlet</servlet-class>
+        <servlet-class>com.shellbomb.servlet.DownloadServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>download</servlet-name>
@@ -53,6 +53,6 @@
 
 
     <welcome-file-list>
-        <welcome-file>shellshock</welcome-file>
+        <welcome-file>shellbomb</welcome-file>
     </welcome-file-list>
 </web-app>

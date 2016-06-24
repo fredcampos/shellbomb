@@ -1,4 +1,4 @@
-package com.shellshock;
+package com.shellbomb;
 
 import java.io.*;
 import java.util.ArrayList;

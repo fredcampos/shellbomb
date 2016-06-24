@@ -1,14 +1,14 @@
-package com.shellshock.servlet;
+package com.shellbomb.servlet;
 
-import com.shellshock.CommandLine;
-import com.shellshock.ProcessOutput;
+import com.shellbomb.CommandLine;
+import com.shellbomb.ProcessOutput;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CommandLineServlet extends ShellshockServlet {
+public class CommandLineServlet extends ShellbombServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {

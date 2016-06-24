@@ -1,7 +1,7 @@
-package com.shellshock.servlet;
+package com.shellbomb.servlet;
 
-import com.shellshock.DirectoryTraverse;
-import com.shellshock.FileHolder;
+import com.shellbomb.DirectoryTraverse;
+import com.shellbomb.FileHolder;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class ShellshockServlet extends HttpServlet {
+public class ShellbombServlet extends HttpServlet {
 
     protected final static String BASE = "/WEB-INF";
     protected final static String INDEX = "/index.jsp";

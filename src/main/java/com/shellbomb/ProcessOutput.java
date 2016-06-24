@@ -1,4 +1,4 @@
-package com.shellshock;
+package com.shellbomb;
 
 import java.util.List;
 

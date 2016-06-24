@@ -12,16 +12,17 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'com.bmuschko.tomcat'
-//apply plugin: 'idea'
-//apply plugin: 'eclipse'
 
 // project version
 version = '1.0'
 // JDK version source compatibility
 sourceCompatibility = 1.5
-// War file name
-war.baseName = 'shellshock'
-// Web directory, this overrides the default value "webapp"
+
+war.baseName = 'shellbomb'
+war.archiveName = 'shellbomb.war'
+tomcatRun.contextPath = '/shellbomb'
+tomcatRunWar.contextPath = '/shellbomb'
+
 project.webAppDirName = 'WebContent'
 
 repositories {
@@ -74,9 +75,6 @@ dependencies {
 
 
 }
-
-tomcatRun.contextPath = '/shellshock'
-tomcatRunWar.contextPath = '/shellshock'
 
 
 tomcat{

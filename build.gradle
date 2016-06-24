@@ -15,8 +15,11 @@ apply plugin: 'com.bmuschko.tomcat'
 
 // project version
 version = '1.0'
-// JDK version source compatibility
-sourceCompatibility = 1.5
+allprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.5
+    targetCompatibility = 1.5
+}
 
 war.baseName = 'shellbomb'
 war.archiveName = 'shellbomb.war'
@@ -57,14 +60,6 @@ dependencies {
     compile 'javax.servlet:jstl:1.2'
     compile 'org.apache.commons:commons-io:1.3.2'
     compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.1'
-
-//    def tomcatVersion = '7.0.57'
-//    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-//            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
-//    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
-//        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
-//    }
-
 
     def tomcatVersion = '6.0.43'
     tomcat "org.apache.tomcat:catalina:${tomcatVersion}",

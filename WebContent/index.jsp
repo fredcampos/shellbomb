@@ -29,13 +29,14 @@
 
     <div class="starter-template">
         <section>
-            <form action="${context}/command" enctype="application/x-www-form-urlencoded" name="uploadForm" method="POST">
+            <form action="${context}/command" enctype="application/x-www-form-urlencoded"
+                  name="commandForm" method="POST">
                 <h3>Execute command</h3>
                 Enter command to execute <br/>
                 <input type="text" name="cmd" required />
                 <input type="submit" />
             </form>
-            ${context}
+
         </section>
         <section>
             <form action="${context}/upload" enctype="multipart/form-data" name="uploadForm" method="POST">
@@ -77,7 +78,6 @@
                                 <c:when test="${file.type == 'directory'}">
                                     <a href="?path=${file.fullPath}">${file.name}</a>
                                 </c:when>
-
                                 <c:otherwise>
                                     ${file.name}
                                 </c:otherwise>
@@ -86,6 +86,14 @@
                         </td>
                         <td> ${file.type}</td>
                         <td> ${file.size}</td>
+
+                        <td>
+                            <c:if test="${file.type != 'directory'}">
+                                <span><a href="${file.downloadLink}">Download </a>
+                                </span>
+                            </c:if>
+                            &nbsp;
+                        </td>
 
                     </tr>
                     </tbody>

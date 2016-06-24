@@ -23,7 +23,10 @@ public class DirectoryTraverse {
     }
 
 
-    public List<FileHolder> listFiles(String path) {
+    public List<FileHolder> listFiles(String path, String context) {
+        if (context == null){
+            context = "";
+        }
 
         File files[] = new File(path).listFiles();
         List<FileHolder> fileList = new ArrayList<FileHolder>();
@@ -66,7 +69,8 @@ public class DirectoryTraverse {
                         holder.size = IOUtils.formatSize(file.length()) + "";
                         holder.type = "file";
                         holder.link = URLEncoder.encode(holder.link, "UTF-8");
-                        holder.downloadLink = "/downloader?path=" + holder.link;
+
+                        holder.downloadLink = context + "/download?path=" + holder.link;
 
                         fileList.add(holder);
                     }

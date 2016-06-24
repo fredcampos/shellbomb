@@ -22,24 +22,27 @@ public class ShellshockServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        setLocalContext(request);
         String dir = getCurrentDir(request);
-        List<FileHolder> ls = DirectoryTraverse.instance().listFiles(dir);
+        List<FileHolder> ls = DirectoryTraverse.instance().listFiles(dir, context);
         request.setAttribute("currentDir", dir);
         request.setAttribute("ls", ls);
-        request.getRequestDispatcher(INDEX).forward(request, response);
-
+        index(request, response);
     }
 
     public void init(final ServletConfig config) {
         this.context = config.getServletContext().getContextPath();
+    }
 
+    public void index(HttpServletRequest request,  HttpServletResponse response)
+            throws IOException, ServletException{
+        setLocalContext(request);
+        request.getRequestDispatcher(INDEX).forward(request, response);
     }
 
     private String getCurrentDir(HttpServletRequest request){
         String path = null;
         if (request.getParameter("path") != null){
-            path = (String)request.getParameter("path");
+            path = request.getParameter("path");
         }
 
         if (path == null) {
@@ -49,7 +52,6 @@ public class ShellshockServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        System.out.println("path = "  + path);
         return path;
     }
 

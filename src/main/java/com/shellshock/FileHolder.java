@@ -1,8 +1,5 @@
 package com.shellshock;
 
-/**
- * Created by fred on 2016/06/07.
- */
 public class FileHolder {
 
     public String name;

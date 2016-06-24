@@ -22,7 +22,6 @@ public class UploadServlet extends ShellshockServlet {
             String path = null;
             InputStream fileContent = null;
             for (FileItem item : items) {
-                System.out.println(item.toString());
                 if (!item.isFormField()) {
                     fileContent = item.getInputStream();
                     fileName = FilenameUtils.getName(item.getName());
@@ -31,10 +30,7 @@ public class UploadServlet extends ShellshockServlet {
                     path = item.getString();
                 }
             }
-
             filePath = path + File.separator + fileName;
-
-
             OutputStream dest = new FileOutputStream(new
                     File(filePath));
             int read = 0;
@@ -44,17 +40,12 @@ public class UploadServlet extends ShellshockServlet {
             }
             fileContent.close();
             dest.close();
-            System.out.println("done writing file " + filePath);
-
 
         } catch (FileUploadException e) {
             e.printStackTrace();
             throw new ServletException("Cannot parse multipart request.", e);
         }
-
-        request.getRequestDispatcher(BASE + "index.jsp").forward(request, response);
-
+        index(request, response);
     }
-
 
 }

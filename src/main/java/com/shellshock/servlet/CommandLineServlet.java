@@ -34,7 +34,7 @@ public class CommandLineServlet extends ShellshockServlet {
             }
         }
 
-        request.getRequestDispatcher(INDEX).forward(request, response);
+        index(request, response);
     }
 
 }
